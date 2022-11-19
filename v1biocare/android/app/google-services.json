@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "34202947577",
+    "project_id": "v1biocare",
+    "storage_bucket": "v1biocare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34202947577:android:a27a82a5e0b797cd36f728",
+        "android_client_info": {
+          "package_name": "com.example.v1biocare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "34202947577-bbci44a1ng618ig264k9f22oen4rjirf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.v1biocare",
+            "certificate_hash": "d96c23f06323dd3c67b468372542bbceb7db2645"
+          }
+        },
+        {
+          "client_id": "34202947577-nehadf6sbjallmpeiu48qpknvhdvdgth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS1NDBTA8JcJqHtoCSdncwkQ8wHzBL1a0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "34202947577-nehadf6sbjallmpeiu48qpknvhdvdgth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
