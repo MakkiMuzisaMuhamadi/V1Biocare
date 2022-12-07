@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
@@ -10,6 +12,7 @@ import '../Widgets/text_widgets.dart';
 import '../firebaseServices/firebaseservice.dart';
 import '../models/productModel.dart';
 import '../providers/review_cart_provider.dart';
+import '../providers/wishlist_provider.dart';
 import 'cartScreen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -25,10 +28,34 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final FirebaseService _service = FirebaseService();
+  bool wishListBool = false;
+
+  getWishtListBool() {
+    FirebaseFirestore.instance
+        .collection("WishList")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("YourWishList")
+        .doc(widget.productId)
+        .get()
+        .then((value) => {
+              if (this.mounted)
+                {
+                  if (value.exists)
+                    {
+                      setState(
+                        () {
+                          wishListBool = value.get("wishList");
+                        },
+                      ),
+                    }
+                }
+            });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<ReviewCartProvider>(context);
-
+    WishListProvider wishListProvider = Provider.of(context);
+    getWishtListBool();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppbar(
@@ -64,9 +91,30 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         Row(
                           children: [
                             IconButton(
-                              icon: const Icon(IconlyLight.heart,
-                                  color: Colors.grey),
-                              onPressed: () {},
+                              icon: wishListBool == false
+                                  ? const Icon(IconlyLight.heart,
+                                      color: Colors.grey)
+                                  : Icon(
+                                      IconlyBold.heart,
+                                      color: Colors.red,
+                                    ),
+                              onPressed: () {
+                                setState(() {
+                                  wishListBool = !wishListBool;
+                                });
+                                if (wishListBool == true) {
+                                  wishListProvider.addWishListData(
+                                    wishListId: widget.product!.productname,
+                                    wishListImage: widget.product!.image,
+                                    wishListName: widget.product!.productname,
+                                    wishListPrice: widget.product!.productprice,
+                                    wishListQuantity: 2,
+                                  );
+                                } else {
+                                  wishListProvider.deleteWishtList(
+                                      widget.product!.productname!);
+                                }
+                              },
                             ),
                             IconButton(
                               icon: const Icon(
@@ -197,7 +245,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 productImage: widget.product!.image!,
                 productName: widget.product!.productname!,
                 productPrice: widget.product!.productprice!,
-                productUnit: 600,
+                productUnit: widget.product!.productunit!,
               ),
               // ElevatedButton(
               //   child: TextWidget(

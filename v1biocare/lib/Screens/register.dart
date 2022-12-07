@@ -272,80 +272,66 @@ class _RegisterState extends State<Register> {
                               ),
                               color: Colors.white,
                             ),
-                            isloadin
-                                ? CircularProgressIndicator()
-                                : MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20.0))),
-                                    elevation: 5.0,
-                                    height: 40,
-                                    onPressed: () async {
-                                      final String username =
-                                          usernameController.text.trim();
-                                      final String number =
-                                          phoneController.text.trim();
-                                      final String email =
-                                          emailController.text.trim();
-                                      final String password =
-                                          passwordController.text.trim();
-                                      final String comfirmpassword =
-                                          confirmpassController.text.trim();
-                                      if (username.isEmpty) {
-                                        Utils().toastMessage(
-                                            'Please Fill Username !');
-                                      }
-                                      if (number.isEmpty) {
-                                        Utils().toastMessage(
-                                            'Phone number cannot be Empty!');
-                                      }
-                                      if (email.isEmpty) {
-                                        Utils().toastMessage(
-                                            'Email cannot be Empty!');
-                                      } else {
-                                        if (password.isEmpty) {
-                                          Utils().toastMessage(
-                                              'Password cannot be Empty!');
-                                        }
-                                        if (comfirmpassword != password) {
-                                          Utils().toastMessage(
-                                              'Password did not match!');
-                                        } else {
-                                          setState(() {
-                                            isloadin = true;
-                                          });
-                                          context
-                                              .read<FirebaseAuthMethods>()
-                                              .signUpWithEmail(
-                                                  context: context,
-                                                  email: email,
-                                                  password: password)
-                                              .then((value) async {
-                                            User? user = FirebaseAuth
-                                                .instance.currentUser;
-                                            await userRef.doc(user!.uid).set({
-                                              'uid': user.uid,
-                                              "username": username,
-                                              "PhoneNumber":
-                                                  countryDial + number,
-                                              "email": email,
-                                              // "PhoneNumber": phoneController,
-                                            });
-                                            setState(() {
-                                              isloadin = false;
-                                            });
-                                          });
-                                        }
-                                      }
-                                    },
-                                    child: Text(
-                                      "Sign Up",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                    color: Colors.white,
-                                  ),
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 5.0,
+                              height: 40,
+                              onPressed: () async {
+                                final String username =
+                                    usernameController.text.trim();
+                                final String number =
+                                    phoneController.text.trim();
+                                final String email =
+                                    emailController.text.trim();
+                                final String password =
+                                    passwordController.text.trim();
+                                final String comfirmpassword =
+                                    confirmpassController.text.trim();
+                                if (username.isEmpty) {
+                                  Utils()
+                                      .toastMessage('Please Fill Username !');
+                                } else if (number.isEmpty) {
+                                  Utils().toastMessage(
+                                      'Phone number cannot be Empty!');
+                                } else if (email.isEmpty) {
+                                  Utils()
+                                      .toastMessage('Email cannot be Empty!');
+                                } else if (password.isEmpty) {
+                                  Utils().toastMessage(
+                                      'Password cannot be Empty!');
+                                } else if (comfirmpassword != password) {
+                                  Utils()
+                                      .toastMessage('Password did not match!');
+                                } else {
+                                  context
+                                      .read<FirebaseAuthMethods>()
+                                      .signUpWithEmail(
+                                          context: context,
+                                          email: email,
+                                          password: password)
+                                      .then((value) async {
+                                    User? user =
+                                        FirebaseAuth.instance.currentUser;
+                                    await userRef.doc(user!.uid).set({
+                                      'uid': user.uid,
+                                      "username": username,
+                                      "PhoneNumber": countryDial + number,
+                                      "email": email,
+                                      // "PhoneNumber": phoneController,
+                                    });
+                                  });
+                                }
+                              },
+                              child: Text(
+                                "Sign Up",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              color: Colors.white,
+                            ),
                           ],
                         ),
                       ],

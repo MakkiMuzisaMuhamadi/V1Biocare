@@ -9,9 +9,11 @@ import 'package:v1biocare/models/productModel.dart';
 import 'package:v1biocare/providers/check_out_provider.dart';
 import 'package:v1biocare/providers/product_provider.dart';
 import 'package:v1biocare/providers/review_cart_provider.dart';
+import 'package:v1biocare/providers/wishlist_provider.dart';
 
 import 'Screens/Prescriptions.dart';
 import 'Screens/upload_prescription.dart';
+import 'Screens/SearchPage.dart';
 import 'firebaseServices/firebase_auth_methods.dart';
 
 void main() async {
@@ -37,6 +39,9 @@ void main() async {
         ChangeNotifierProvider<CheckoutProvider>(
           create: (context) => CheckoutProvider(),
         ),
+        ChangeNotifierProvider<WishListProvider>(
+          create: (context) => WishListProvider(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -60,7 +65,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         Prescription.id: (context) => const Prescription(),
-        PRescriptionsScreen.id: (context) => const PRescriptionsScreen(),
+        // PRescriptionsScreen.id: (context) => const PRescriptionsScreen(),
         OnbordingScreen.id: (context) => const OnbordingScreen(),
         LoginPage.id: (context) => const LoginPage(),
         Register.id: (context) => Register(),
@@ -68,6 +73,7 @@ class MyApp extends StatelessWidget {
         ReviewCart.id: (context) => ReviewCart(),
         ProfileScreen.id: (context) => const ProfileScreen(),
         CategoriesScreen.id: (context) => const CategoriesScreen(),
+        // Search.id: (context) => Search(),
       },
     );
   }

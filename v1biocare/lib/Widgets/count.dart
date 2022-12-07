@@ -10,7 +10,7 @@ class Count extends StatefulWidget {
   String? productImage;
   String? productId;
   double? productPrice;
-  var productUnit;
+  String? productUnit;
 
   Count({
     this.productName,

@@ -4,6 +4,7 @@ import 'package:v1biocare/models/delivery_address_model.dart';
 
 import '../../../providers/review_cart_provider.dart';
 import '../delivery_details/single_delivery_item.dart';
+import 'my_google_pay.dart';
 import 'order_item.dart';
 
 class PaymentSummary extends StatefulWidget {
@@ -47,7 +48,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
       bottomNavigationBar: ListTile(
         title: Text("Total Amount"),
         subtitle: Text(
-          "\$${total! + 5}",
+          "\UGX ${total! + 5}",
           style: TextStyle(
             color: Colors.green[900],
             fontWeight: FontWeight.bold,
@@ -69,9 +70,9 @@ class _PaymentSummaryState extends State<PaymentSummary> {
               //     : Container();
             },
             child: Text(
-              "Pleace Order",
+              "Place Order",
               style: TextStyle(
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
             color: Colors.green,
@@ -122,7 +123,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                     ),
                   ),
                   trailing: Text(
-                    "\$${totalPrice + 5}",
+                    "\UGX ${totalPrice + 5}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -135,7 +136,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   trailing: Text(
-                    "\$$discountValue",
+                    "\UGX $discountValue",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -148,7 +149,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   trailing: Text(
-                    "\$10",
+                    "\UGX 10",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -161,7 +162,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 RadioListTile(
                   value: AddressTypes.Home,
                   groupValue: myType,
-                  title: Text("Home"),
+                  title: Text("Cash on Delivery"),
                   onChanged: (value) {
                     setState(() {
                       myType = value!;
@@ -175,7 +176,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 RadioListTile(
                   value: AddressTypes.OnlinePayment,
                   groupValue: myType,
-                  title: Text("OnlinePayment"),
+                  title: Text("Mobile Payment"),
                   onChanged: (value) {
                     setState(() {
                       myType = value!;

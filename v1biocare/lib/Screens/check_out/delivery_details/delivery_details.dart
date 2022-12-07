@@ -39,8 +39,8 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: MaterialButton(
           child: deliveryAddressProvider.getDeliveryAddressList.isEmpty
-              ? Text("Add new Address")
-              : Text("Payment Summary"),
+              ? Text("Add new Address", style: TextStyle(color: Colors.white))
+              : Text("Payment Summary", style: TextStyle(color: Colors.white)),
           onPressed: () {
             deliveryAddressProvider.getDeliveryAddressList.isEmpty
                 ? Navigator.of(context).push(

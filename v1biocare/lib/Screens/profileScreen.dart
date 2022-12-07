@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:v1biocare/Screens/Prescriptions.dart';
 import 'package:v1biocare/Screens/loginScreen.dart';
 import 'package:v1biocare/Screens/upload_prescription.dart';
+import 'package:v1biocare/Screens/wish_list.dart';
 
 import '../Widgets/text_widgets.dart';
 import '../firebaseServices/firebase_auth_methods.dart';
@@ -56,78 +57,87 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text('Username:',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.normal)),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                streamSnapshot.data!["username"],
-                                style: TextStyle(color: Colors.grey),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text('PhoneNumber:',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.normal)),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                streamSnapshot.data!["PhoneNumber"],
-                                style: TextStyle(color: Colors.grey),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Row(
-                            children: [
-                              Text('Email:',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.normal)),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                streamSnapshot.data!["email"],
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              if (!authuser.emailVerified)
-                                TextButton(
-                                  onPressed: () {
-                                    context
-                                        .read<FirebaseAuthMethods>()
-                                        .sendEmailVerification(context);
-                                  },
-                                  child: Text(
-                                    ' Verify Email:',
-                                    style: TextStyle(color: Colors.blue),
-                                  ),
+                          Center(
+                            child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 65,
+                                      child: const CircleAvatar(
+                                        radius: 60,
+                                        backgroundImage: AssetImage(
+                                            "assets/blank-profile-picture-g81a7e618f_1280.png"),
+                                      ),
+                                    ),
+                                    Positioned(
+                                        top: 85,
+                                        left: 60,
+                                        child: RawMaterialButton(
+                                          fillColor: Colors.red,
+                                          elevation: 10,
+                                          onPressed: () {},
+                                          child: Icon(
+                                            Icons.add_a_photo,
+                                            color: Colors.white,
+                                            // color: Colors.green,
+                                          ),
+                                          padding: EdgeInsets.all(10),
+                                          shape: CircleBorder(),
+                                        ))
+                                  ],
                                 ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(''),
-                          ),
-                          const SizedBox(
-                            height: 0,
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      streamSnapshot.data!["username"],
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      streamSnapshot.data!["PhoneNumber"],
+                                      style: TextStyle(color: Colors.black),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      streamSnapshot.data!["email"],
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    // if (!authuser.emailVerified)
+                                    //   TextButton(
+                                    //     onPressed: () {
+                                    //       context
+                                    //           .read<FirebaseAuthMethods>()
+                                    //           .sendEmailVerification(context);
+                                    //     },
+                                    //     child: Text(
+                                    //       ' Verify Email:',
+                                    //       style: TextStyle(color: Colors.blue),
+                                    //     ),
+                                    //   ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const Divider(color: Colors.grey),
                           _listTiles(
@@ -146,14 +156,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           _listTiles(
                               title: 'Wishlist',
                               icon: IconlyLight.heart,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => WishLsit(),
+                                ));
+                              },
                               color: Colors.black),
                           _listTiles(
                               title: 'Prescriptions',
                               icon: IconlyLight.calendar,
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, PRescriptionsScreen.id);
+                                // Navigator.pushReplacementNamed(
+                                //     context, PRescriptionsScreen.id);
                               },
                               color: Colors.black),
                           _listTiles(

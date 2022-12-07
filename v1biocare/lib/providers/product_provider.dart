@@ -13,6 +13,7 @@ class ProductProvider with ChangeNotifier {
       productname: element.get("productname"),
       productprice: element.get("productprice"),
       productDetails: element.get("productDetails"),
+      productunit: element.get("productunit"),
       subcategory: element.get("subcategory"),
       id: element.get("id"),
     );
@@ -90,7 +91,7 @@ class ProductProvider with ChangeNotifier {
 //   }
 
   /////////////////// Search Return ////////////
-  List<ProductModel> get gerAllProductSearch {
+  List<ProductModel> get getAllProductSearch {
     return search;
   }
 }

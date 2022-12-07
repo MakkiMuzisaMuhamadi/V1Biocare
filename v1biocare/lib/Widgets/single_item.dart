@@ -13,13 +13,13 @@ class SingleItem extends StatefulWidget {
   double? productPrice;
   String? productId;
   int? productQuantity;
-  Function() onDelete;
+  Function()? onDelete;
   var productUnit;
   SingleItem(
       {this.productQuantity,
       this.productId,
       this.productUnit,
-      required this.onDelete,
+      this.onDelete,
       this.isBool,
       this.productImage,
       this.productName,

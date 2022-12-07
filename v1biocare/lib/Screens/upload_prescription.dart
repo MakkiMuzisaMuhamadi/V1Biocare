@@ -131,12 +131,12 @@ class _prescriptionState extends State<Prescription> {
           style: TextStyle(letterSpacing: 2),
         ),
         backgroundColor: Colors.green,
-        leading: BackButton(
-          color: Colors.black,
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, MainScreen.id);
-          },
-        ),
+        // leading: BackButton(
+        //   color: Colors.white,
+        //   onPressed: () {
+        //     Navigator.pushReplacementNamed(context, MainScreen.id);
+        //   },
+        // ),
       ),
       body: Form(
         key: _formkey,

@@ -26,7 +26,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          // ignore: prefer_if_null_operators
           selectedCategory == null ? title : selectedCategory!,
           style: const TextStyle(letterSpacing: 2),
         ),
@@ -35,8 +34,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         actions: [
           // Navigate to the Search Screen
           IconButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const SearchPage())),
+            onPressed: () {},
             icon: const Icon(Icons.search),
           ),
           IconButton(

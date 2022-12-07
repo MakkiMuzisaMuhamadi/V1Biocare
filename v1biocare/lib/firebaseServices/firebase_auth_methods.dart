@@ -3,6 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../Screens/Screens.dart';
 import '../utils/showOtpDialog.dart';
@@ -36,13 +38,20 @@ class FirebaseAuthMethods {
     required BuildContext context,
   }) async {
     try {
+      EasyLoading.show(status: 'Please Wait! ');
+
       await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      EasyLoading.showSuccess('Welcome');
+      EasyLoading.dismiss();
+
       Navigator.pushReplacementNamed(context, LoginPage.id);
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
+
       // if you want to display your own custom error message
       if (e.code == 'weak-password') {
         Utils().toastMessage('The password provided is too weak.');
@@ -64,18 +73,23 @@ class FirebaseAuthMethods {
     required BuildContext context,
   }) async {
     try {
+      EasyLoading.show(status: 'Please Wait! ');
       await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-            Navigator.pushReplacementNamed(context, MainScreen.id);
 
+      EasyLoading.showSuccess('Welcome');
+      EasyLoading.dismiss();
+      Navigator.pushReplacementNamed(context, MainScreen.id);
       if (!user.emailVerified) {
         await sendEmailVerification(context);
         // restrict access to certain things using provider
         // transition to another page instead of home screen
       }
     } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
+
       if (e.code == 'user-not-found') {
         Utils().toastMessage('No user found for that email.');
 
@@ -85,7 +99,8 @@ class FirebaseAuthMethods {
         print('Wrong password provided for that user.');
       }
 
-      Utils().toastMessage(e.message!); // Displaying the error message
+      Utils().toastMessage(e.message!);
+      // Displaying the error message
     }
   }
 

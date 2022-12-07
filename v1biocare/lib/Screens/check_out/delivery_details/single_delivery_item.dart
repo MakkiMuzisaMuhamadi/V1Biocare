@@ -27,7 +27,7 @@ class SingleDeliveryItem extends StatelessWidget {
                     addressType!,
                     style: TextStyle(
                       fontSize: 13,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 ),

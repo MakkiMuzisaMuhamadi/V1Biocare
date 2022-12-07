@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:v1biocare/Screens/upload_prescription.dart';
 
 import '../Widgets/category_widget.dart';
+import '../Widgets/productWidget.dart';
 import '../Widgets/widgets.dart';
+import 'mainscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppbar(
+      appBar: CustomAppbar(
         title: 'BioCare',
       ),
       body: ListView(
@@ -29,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => Prescription(),
+                            builder: (context) => const Prescription(),
                           ),
                         );
                       },
@@ -67,7 +69,49 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          const CategoryWidget(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Products',
+                      style: TextStyle(
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ],
+                ),
+                //     Row(
+                //       children: [
+                //         InkWell(
+                //           onTap: () {
+                //             Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                 builder: (BuildContext context) =>
+                //                     const MainScreen(index: 1),
+                //               ),
+                //             );
+                //           },
+                //           child: Text(
+                //             'View All',
+                //             style: TextStyle(
+                //                 color: Colors.green,
+                //                 letterSpacing: 1,
+                //                 fontWeight: FontWeight.bold,
+                //                 fontSize: 20),
+                //           ),
+                //         ),
+                //       ],
+                //     )
+              ],
+            ),
+          ),
+          const ProductmodelWidget(),
         ],
       ),
     );

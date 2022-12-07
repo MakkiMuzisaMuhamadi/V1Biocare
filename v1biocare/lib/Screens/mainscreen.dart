@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:badges/badges.dart';
 import 'package:v1biocare/Screens/Screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import '../../../providers/review_cart_provider.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   final int? index;
@@ -41,40 +44,53 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon:
-                Icon(_selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(_selectedIndex == 1
-                ? IconlyBold.category
-                : IconlyLight.category),
-            label: 'Category',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(_selectedIndex == 2 ? IconlyBold.buy : IconlyLight.buy),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(_selectedIndex == 3
-                ? CupertinoIcons.person_solid
-                : CupertinoIcons.person),
-            label: 'Account',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green,
-        onTap: _onItemTapped,
-        showUnselectedLabels: true,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
+    ReviewCartProvider reviewCartProvider = Provider.of(context);
+    reviewCartProvider.getReviewCartData();
+
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                  _selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(_selectedIndex == 1
+                  ? IconlyBold.category
+                  : IconlyLight.category),
+              label: 'Category',
+            ),
+            BottomNavigationBarItem(
+              icon: Badge(
+                badgeColor: Colors.white,
+                child: Icon(
+                    _selectedIndex == 2 ? IconlyBold.buy : IconlyLight.buy),
+                badgeContent: Text(
+                  "${reviewCartProvider.getReviewCartDataList.length}",
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(_selectedIndex == 3
+                  ? CupertinoIcons.person_solid
+                  : CupertinoIcons.person),
+              label: 'Account',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.green,
+          onTap: _onItemTapped,
+          showUnselectedLabels: true,
+          unselectedItemColor: Colors.grey,
+          type: BottomNavigationBarType.fixed,
+        ),
       ),
     );
   }

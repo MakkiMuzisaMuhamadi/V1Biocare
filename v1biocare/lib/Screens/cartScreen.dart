@@ -8,18 +8,6 @@ import '../providers/review_cart_provider.dart';
 import '../utils/utils.dart';
 import 'check_out/delivery_details/delivery_details.dart';
 
-// import '../Widgets/cartItem.dart';
-// import '../providers/review_cart_provider.dart';
-
-// class CartScreen extends StatelessWidget {
-//   static const id = '/CartScreen';
-//   const CartScreen({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final cart = Provider.of<Cart>(context);
-//     return Scaffold(
-//       appBar: AppBar(
 //         title: Text('Your Cart'),
 //       ),
 //       body: Column(
@@ -81,7 +69,7 @@ class ReviewCart extends StatelessWidget {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text("Cart Product"),
-      content: Text("Are you delete on cartProduct?"),
+      content: Text("Are you Sure you Want to delete this CartProduct?"),
       actions: [
         cancelButton,
         continueButton,
@@ -139,13 +127,15 @@ class ReviewCart extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          " Cart",
+          "Cart",
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
       body: reviewCartProvider!.getReviewCartDataList.isEmpty
           ? Center(
-              child: Text("NO DATA"),
+              child: Image.asset('assets/images/empty cart.png'),
+
+              //  Text("NO DATA"),
             )
           : ListView.builder(
               itemCount: reviewCartProvider!.getReviewCartDataList.length,

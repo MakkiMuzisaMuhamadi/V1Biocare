@@ -12,27 +12,44 @@ class OrderItem extends StatelessWidget {
         e!.cartImage!,
         width: 60,
       ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      title: FittedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              e!.cartName!,
+              style: TextStyle(
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text(
+              "\UGX ${e!.cartPrice}",
+            ),
+          ],
+        ),
+      ),
+      subtitle: Column(
         children: [
-          Text(
-            e!.cartName!,
-            style: TextStyle(
-              color: Colors.grey[600],
-            ),
+          Row(
+            children: [
+              Text(
+                e!.cartUnit,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
           ),
-          Text(
-            e!.cartUnit,
-            style: TextStyle(
-              color: Colors.grey[600],
-            ),
-          ),
-          Text(
-            "\$${e!.cartPrice}",
-          ),
+          Row(
+            children: [
+              Text("Quantity ${e!.cartQuantity.toString()}"),
+            ],
+          )
         ],
       ),
-      subtitle: Text(e!.cartQuantity.toString()),
     );
   }
 }

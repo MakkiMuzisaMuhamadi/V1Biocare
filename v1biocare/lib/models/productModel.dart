@@ -10,7 +10,7 @@ class ProductModel with ChangeNotifier {
       this.image,
       this.productprice,
       this.productDetails,
-      this.productUnit});
+      this.productunit});
 
   ProductModel.fromJson(Map<String, dynamic?> json)
       : this(
@@ -20,6 +20,7 @@ class ProductModel with ChangeNotifier {
           productDetails: json['productDetails']! as String,
           productprice: double.tryParse(json['productprice']) ?? 0.0,
           image: json['image']! as String,
+          productunit: json['productunit']! as String,
         );
 
   final String? productname;
@@ -27,7 +28,7 @@ class ProductModel with ChangeNotifier {
   final double? productprice;
   final String? subcategory;
   final String? image;
-  final String? productUnit;
+  final String? productunit;
   final String? id;
 
   Map<String, Object?> toJson() {
@@ -35,6 +36,7 @@ class ProductModel with ChangeNotifier {
       'productname': productname,
       'productDetails': productDetails,
       'productprice': productprice,
+      'productunit': productunit,
       'image': image,
       'subcategory': subcategory,
     };

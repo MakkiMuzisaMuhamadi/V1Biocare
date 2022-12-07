@@ -204,52 +204,64 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        isloadin
-                            ? CircularProgressIndicator()
-                            : MaterialButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0))),
-                                elevation: 5.0,
-                                height: 40,
-                                onPressed: () {
-                                  final String email =
-                                      emailController.text.trim();
-                                  final String password =
-                                      passwordController.text.trim();
-
-                                  if (email.isEmpty) {
-                                    Utils()
-                                        .toastMessage('Email cannot be Empty!');
-                                  } else {
-                                    if (password.isEmpty) {
-                                      Utils().toastMessage(
-                                          'Password cannot be Empty!');
-                                    } else {
-                                      setState(() {
-                                        isloadin = true;
-                                      });
-                                      context
-                                          .read<FirebaseAuthMethods>()
-                                          .loginWithEmail(
-                                            email: email,
-                                            password: password,
-                                            context: context,
-                                          );
-                                      setState(() {
-                                        isloadin = false;
-                                      });
-                                    }
-                                  }
-                                },
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                  ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 10,
+                              height: 40,
+                              onPressed: () {},
+                              child: Text(
+                                "Skip",
+                                style: TextStyle(
+                                  fontSize: 20,
                                 ),
-                                color: Colors.white,
                               ),
+                              color: Colors.white,
+                            ),
+                            MaterialButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0))),
+                              elevation: 5.0,
+                              height: 40,
+                              onPressed: () async {
+                                final String email =
+                                    emailController.text.trim();
+                                final String password =
+                                    passwordController.text.trim();
+
+                                if (email.isEmpty) {
+                                  Utils()
+                                      .toastMessage('Email cannot be Empty!');
+                                } else {
+                                  if (password.isEmpty) {
+                                    Utils().toastMessage(
+                                        'Password cannot be Empty!');
+                                  } else {
+                                    context
+                                        .read<FirebaseAuthMethods>()
+                                        .loginWithEmail(
+                                          email: email,
+                                          password: password,
+                                          context: context,
+                                        );
+                                  }
+                                }
+                              },
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                         SizedBox(
                           height: 10,
                         ),
@@ -260,7 +272,7 @@ class _LoginPageState extends State<LoginPage> {
                             visible: visible,
                             child: Container(
                                 child: CircularProgressIndicator(
-                              color: Colors.white,
+                              color: Colors.black,
                             ))),
                       ],
                     ),
@@ -330,33 +342,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  void signIn(String email, String password) async {
-    if (_formkey.currentState!.validate()) {
-      try {
-        UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MainScreen(),
-          ),
-        );
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          Utils().toastMessage('No user found for that email.');
-
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          Utils().toastMessage('Wrong password provided for that user.');
-
-          print('Wrong password provided for that user.');
-        }
-      }
-    }
   }
 }
