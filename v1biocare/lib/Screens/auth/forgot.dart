@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens.dart';
+import '../Screens.dart';
 
 class Forgotpass extends StatefulWidget {
   const Forgotpass({Key? key}) : super(key: key);

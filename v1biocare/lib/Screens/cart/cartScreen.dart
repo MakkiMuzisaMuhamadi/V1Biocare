@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-import '../Widgets/single_item.dart';
-import '../models/review_cart_model.dart';
-import '../providers/review_cart_provider.dart';
-import '../utils/utils.dart';
-import 'check_out/delivery_details/delivery_details.dart';
+import '../../Widgets/single_item.dart';
+import '../../models/review_cart_model.dart';
+import '../../providers/review_cart_provider.dart';
+import '../../utils/utils.dart';
+import 'delivery_details/delivery_details.dart';
 
 //         title: Text('Your Cart'),
 //       ),

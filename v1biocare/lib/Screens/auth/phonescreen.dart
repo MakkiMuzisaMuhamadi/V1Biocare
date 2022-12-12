@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 
-import '../firebaseServices/firebase_auth_methods.dart';
+import '../../firebaseServices/firebase_auth_methods.dart';
 import 'loginScreen.dart';
 
 class PhoneScreen extends StatefulWidget {

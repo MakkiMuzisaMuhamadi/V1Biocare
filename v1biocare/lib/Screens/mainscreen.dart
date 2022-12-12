@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     CategoriesScreen(),
+    PrescriptionsScreen(),
     ReviewCart(),
     ProfileScreen(),
   ];
@@ -63,13 +64,19 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(_selectedIndex == 1
                   ? IconlyBold.category
                   : IconlyLight.category),
-              label: 'Category',
+              label: 'Categories',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(_selectedIndex == 2
+                  ? IconlyBold.calendar
+                  : IconlyLight.calendar),
+              label: 'Prescription',
             ),
             BottomNavigationBarItem(
               icon: Badge(
                 badgeColor: Colors.white,
                 child: Icon(
-                    _selectedIndex == 2 ? IconlyBold.buy : IconlyLight.buy),
+                    _selectedIndex == 3 ? IconlyBold.buy : IconlyLight.buy),
                 badgeContent: Text(
                   "${reviewCartProvider.getReviewCartDataList.length}",
                   style: TextStyle(color: Colors.red),
@@ -78,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
               label: 'Cart',
             ),
             BottomNavigationBarItem(
-              icon: Icon(_selectedIndex == 3
+              icon: Icon(_selectedIndex == 4
                   ? CupertinoIcons.person_solid
                   : CupertinoIcons.person),
               label: 'Account',

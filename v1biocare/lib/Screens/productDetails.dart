@@ -13,7 +13,7 @@ import '../firebaseServices/firebaseservice.dart';
 import '../models/productModel.dart';
 import '../providers/review_cart_provider.dart';
 import '../providers/wishlist_provider.dart';
-import 'cartScreen.dart';
+import 'cart/cartScreen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final ProductModel? product;

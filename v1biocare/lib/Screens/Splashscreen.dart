@@ -23,25 +23,25 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 4),
       (() {
         // ignore: no_leading_underscores_for_local_identifiers
         bool? _boarding = store.read('onboarding');
-        final firebaseUser = Provider.of<User?>(context, listen: false);
+        // final firebaseUser = Provider.of<User?>(context, listen: false);
 
-        if (_boarding == null) {
-          Navigator.pushReplacementNamed(context, OnbordingScreen.id);
-        } else if (_boarding == true) {
-          Navigator.pushReplacementNamed(context, LoginPage.id);
-        }
-        if (firebaseUser != null) {
-          Navigator.pushReplacementNamed(context, MainScreen.id);
-        }
+        // if (_boarding == null) {
+        //   Navigator.pushReplacementNamed(context, OnbordingScreen.id);
+        // } else if (_boarding == true) {
+        //   Navigator.pushReplacementNamed(context, LoginPage.id);
+        // }
+        // if (firebaseUser != null) {
+        //   Navigator.pushReplacementNamed(context, MainScreen.id);
+        // }
 
         _boarding == null
             ? Navigator.pushReplacementNamed(context, OnbordingScreen.id)
             : _boarding == true
-                ? Navigator.pushReplacementNamed(context, LoginPage.id)
+                ? Navigator.pushReplacementNamed(context, MainScreen.id)
                 : Navigator.pushReplacementNamed(context, OnbordingScreen.id);
       }),
     );

@@ -7,13 +7,13 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-import 'package:v1biocare/Screens/phonescreen.dart';
+import 'package:v1biocare/Screens/auth/phonescreen.dart';
 
-import '../firebaseServices/firebase_auth_methods.dart';
-import '../firebaseServices/firebaseservice.dart';
-import '../utils/utils.dart';
-import 'Screens.dart';
-import 'mainscreen.dart';
+import '../../firebaseServices/firebase_auth_methods.dart';
+import '../../firebaseServices/firebaseservice.dart';
+import '../../utils/utils.dart';
+import '../Screens.dart';
+import '../mainscreen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

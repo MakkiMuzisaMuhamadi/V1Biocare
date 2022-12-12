@@ -13,9 +13,16 @@ class BannerWidget extends StatefulWidget {
 
 class _BannerWidgetState extends State<BannerWidget> {
   final FirebaseService _service = FirebaseService();
+  int selectedPage = 0;
+  PageController pageController = PageController();
 
   double scrollPosition = 0;
-  final List _bannerimage = [];
+  List _bannerimage = [];
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -57,8 +64,15 @@ class _BannerWidgetState extends State<BannerWidget> {
                       ),
                     )
                   : PageView.builder(
+                      controller: pageController,
                       itemCount: _bannerimage.length,
                       itemBuilder: (BuildContext context, int index) {
+                        // setState(() {
+                        //   _bannerimage = in;
+                        // });
+                        // pageController.animateToPage(index,
+                        //     duration: Duration(microseconds: 500),
+                        //     curve: Curves.easeInOutExpo);
                         return Image.network(
                           _bannerimage[index],
                           fit: BoxFit.fill,

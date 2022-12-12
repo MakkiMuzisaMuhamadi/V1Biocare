@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
-import 'package:v1biocare/Screens/Prescriptions.dart';
-import 'package:v1biocare/Screens/loginScreen.dart';
-import 'package:v1biocare/Screens/upload_prescription.dart';
+import 'package:v1biocare/Screens/auth/loginScreen.dart';
+import 'package:v1biocare/Screens/Prescriptions/PrescriptionUpload.dart';
 import 'package:v1biocare/Screens/wish_list.dart';
 
 import '../Widgets/text_widgets.dart';

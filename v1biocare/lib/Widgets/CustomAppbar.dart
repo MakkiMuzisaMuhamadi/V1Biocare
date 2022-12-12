@@ -4,7 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
 import '../Screens/SearchPage.dart';
-import '../Screens/cartScreen.dart';
+import '../Screens/cart/cartScreen.dart';
 import '../providers/product_provider.dart';
 import '../providers/review_cart_provider.dart';
 

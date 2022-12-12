@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 
-import '../firebaseServices/firebase_auth_methods.dart';
-import '../utils/showSnackbar.dart';
-import '../utils/utils.dart';
-import 'Screens.dart';
+import '../../firebaseServices/firebase_auth_methods.dart';
+import '../../utils/showSnackbar.dart';
+import '../../utils/utils.dart';
+import '../Screens.dart';
 
 class Register extends StatefulWidget {
   static const String id = 'register-Screen';

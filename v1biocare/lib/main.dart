@@ -11,8 +11,7 @@ import 'package:v1biocare/providers/product_provider.dart';
 import 'package:v1biocare/providers/review_cart_provider.dart';
 import 'package:v1biocare/providers/wishlist_provider.dart';
 
-import 'Screens/Prescriptions.dart';
-import 'Screens/upload_prescription.dart';
+import 'Screens/Prescriptions/PrescriptionUpload.dart';
 import 'Screens/SearchPage.dart';
 import 'firebaseServices/firebase_auth_methods.dart';
 

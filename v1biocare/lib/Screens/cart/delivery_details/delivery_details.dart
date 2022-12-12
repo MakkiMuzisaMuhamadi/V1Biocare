@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:v1biocare/Screens/check_out/delivery_details/single_delivery_item.dart';
+import 'package:v1biocare/Screens/cart/delivery_details/single_delivery_item.dart';
 
 import '../../../models/delivery_address_model.dart';
 import '../../../providers/check_out_provider.dart';
